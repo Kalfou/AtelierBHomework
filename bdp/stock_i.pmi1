@@ -1,0 +1,228 @@
+﻿THEORY BalanceX IS
+  stock_i,66,5,0,55,3,0,0;
+  GetRequiredAmount,2,0,0,2,0,0,0;
+  GetShortage,1,1,0,0,0,0,0;
+  GetSum,8,2,0,5,1,0,0;
+  Initialisation,4,0,0,4,0,0,0;
+  Pop,14,0,0,12,0,0,0;
+  Put,15,1,0,13,0,0,0;
+  ValuesLemmas,1,1,0,0,0,0,0;
+  WellDefinedness_GetRequiredAmount,2,0,0,2,0,0,0;
+  WellDefinedness_GetSum,5,0,0,5,0,0,0;
+  WellDefinedness_Pop,7,0,0,6,1,0,0;
+  WellDefinedness_Put,7,0,0,6,1,0,0
+END
+&
+THEORY ProofState IS
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(1);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(1);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(1);
+  Proved(0);
+  Proved(0);
+  Proved(Util);
+  Proved(0);
+  Proved(0);
+  Proved(Util);
+  Proved(0);
+  Proved(Util);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Unproved;
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Unproved;
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Unproved;
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(Util);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(0);
+  Proved(Util)
+END
+&
+THEORY MethodList IS
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr & ah(ii$1: 0..5 => 1<=ii$1+1) & pr & ah(1..ii$1+1 = 1..ii$1\/{ii$1+1}) & pr & pp(rp.1 | 60) & pr & ah(1..ii$1/\{ii$1+1} = {}) & pr & pr;
+  pr;
+  pr;
+  dd & mp & ar(s1.6,Goal) & pr;
+  pr;
+  pr & pp(rt.1 | 60);
+  pr;
+  pr;
+  pr;
+  ?;
+  pr;
+  pr;
+  pr;
+  pr;
+  ?;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  ?;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  dd & ah(dom(c_Shortages$1<+{ii|->TRUE}|>{TRUE}) <: {xx | xx: dom(CurrentStocks) & (CurrentStocks<+{ii|->CurrentStocks(ii)+amt})(xx)+1<=MaxStocks(xx)/2} & {xx | xx: dom(CurrentStocks) & (CurrentStocks<+{ii|->CurrentStocks(ii)+amt})(xx)+1<=MaxStocks(xx)/2} <: dom(c_Shortages$1<+{ii|->TRUE}|>{TRUE})) & mp & ah(dom(c_Shortages$1<+{ii|->TRUE}|>{TRUE}) <: dom(CurrentStocks)) & eh(CurrentStocks,_h,Goal) & ah(dom(c_Shortages$1) = dom(c_CurrentStocks$1)) & pr & pp(rp.1 | 1) & dd & eh(dom(c_CurrentStocks$1),_h,Goal) & ah(ii: dom(c_Shortages$1)) & pr & dd & pp(rp.1 | 60) & pr & dc(ii = xx) & pr & dd & ah((CurrentStocks<+{ii|->CurrentStocks(ii)+amt})(xx) = CurrentStocks(xx)) & pr & dd & eh((CurrentStocks<+{ii|->CurrentStocks(ii)+amt})(xx),_h,Goal) & eh({1|->1000,2|->2000,3|->500,4|->125,5|->4000},_h,AllHyp) & dd & ph(xx,!xx.(xx: Shortages => 0<= -1-CurrentStocks(xx)+MaxStocks(xx)/2 & CurrentStocks(xx)+1<=MaxStocks(xx)/2)) & eh(Shortages,_h,Goal) & pp(rp.1 | 60) & eh({1|->1000,2|->2000,3|->500,4|->125,5|->4000},_h,AllHyp) & dd & ar(SimplifyX.67,Goal) & mp & eh({1|->1000,2|->2000,3|->500,4|->125,5|->4000},_h,AllHyp) & dd & ph(xx,!xx.(xx: dom(CurrentStocks) & (0<= -1-CurrentStocks(xx)+MaxStocks(xx)/2 & CurrentStocks(xx)+1<=MaxStocks(xx)/2) => xx: Shortages)) & pr & pr & pr & eh(Shortages,_h,Goal) & pp(rp.0 | 1) & ah(not(xx = ii)) & pp(rp.0 | 1) & dd & ar(GenEqualityX.5,Fwd);
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  pr;
+  dd & mp & pp(rt.1 | 60) & pp(rt.1 | 60) & pp(rt.1 | 60) & pp(rt.1 | 60) & pp(rt.1 | 60) & pp(rt.1 | 60)
+END
+&
+THEORY PassList IS
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(1),(?;0);
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(1),(?;0);
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(1),(?;0);
+  Force(0),?;
+  Force(0),?;
+  Force(0),(?;0;1);
+  Force(0),?;
+  Force(0),?;
+  Force(0),(?;0;1);
+  Force(0),?;
+  Force(0),(?;0;1);
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),(?;0;1);
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),(?;0;1);
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),(?;0;1);
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),(?;0;1);
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),?;
+  Force(0),(?;0;1)
+END
+&
+THEORY ManForms 
+END
+&
+THEORY Version IS
+  PRVersion("svn")(CLT == "svn")
+END

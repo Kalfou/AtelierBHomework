@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<db_xml>
+    <atelierb version="3_7_ubuntu-cvs" />
+    <project decomp_dir="/home/feri/AB451_h_2020/NJOIM8_hf1_v3/bdp/expand_src" old_decomp_dir="/home/feri/AB451_h_2020/NJOIM8_hf1_v3/bdp/src">
+        <!-- Definition directory list -->
+        <!-- Component file list -->
+        <component_file path="/home/feri/AB451_h_2020/NJOIM8_hf1_v3/src" name="stock" suffix="mch" user="feri">
+            <component name="stock" type="specification" />
+        </component_file>
+    </project>
+</db_xml>

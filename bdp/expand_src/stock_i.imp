@@ -1,0 +1,116 @@
+﻿/* stock_i
+ * Author: Comrade
+ * Creation date: 2021.10.27.
+ */
+
+IMPLEMENTATION stock_i
+REFINES stock
+
+DEFINITIONS
+    "definitions.def"
+
+VALUES
+   MaxStocks = MAX_STOCKS_DEF
+
+CONCRETE_VARIABLES
+    c_CurrentStocks ,      // Same as abstract
+    c_Shortages ,          // Use the array returned by GetShortages() instead of the abstract set
+    c_RequiredAmounts      // Same as abstract
+
+
+
+INVARIANT
+    c_CurrentStocks : STOCKS --> NUM_OF_STOCK_TYPE
+    & c_CurrentStocks = CurrentStocks           // Same as abstract
+    & c_RequiredAmounts : STOCKS --> NUM_OF_STOCK_TYPE
+    & c_RequiredAmounts = RequiredAmounts     // Same as abstract
+    & c_Shortages : STOCKS --> BOOL           // Array instead of set
+    & dom ( c_Shortages |> { TRUE } ) = Shortages // Array contains true if index is in the set
+    //& dom(c_Shortages|>{FALSE})/\Shortages = {}
+    & MaxStocks : ( 1 .. 5 ) --> ( 0 .. 4000 )
+
+
+INITIALISATION
+    c_CurrentStocks := STOCKS * { 0 } ; // Empty
+    c_Shortages := STOCKS * { TRUE } ; // Empty -> Shortage of everything
+    c_RequiredAmounts := MaxStocks  // Empty -> No requirement is met yet
+
+OPERATIONS
+    Put ( ii , amt ) = //Feladat1
+    BEGIN
+        //Update stock
+        c_CurrentStocks ( ii ) := c_CurrentStocks ( ii ) + amt ;
+
+        c_RequiredAmounts ( ii ) := MaxStocks ( ii ) - ( c_CurrentStocks ( ii ) ) ;
+
+        // Update shortages
+        VAR
+            curr , max2
+        IN
+            curr := c_CurrentStocks ( ii ) ;
+            max2 := MaxStocks ( ii ) / 2 ;
+            IF curr < max2
+            THEN
+                c_Shortages ( ii ) := TRUE
+            ELSE
+                c_Shortages ( ii ) := FALSE
+            END
+        END
+    END
+    ;
+
+    Pop ( ii , amt ) = //Feladat2
+    BEGIN
+        c_CurrentStocks ( ii ) := c_CurrentStocks ( ii ) - amt ;
+        c_RequiredAmounts ( ii ) := MaxStocks ( ii ) - ( c_CurrentStocks ( ii ) ) ;
+        VAR
+            curr , max2
+        IN
+            curr := c_CurrentStocks ( ii ) ;
+            max2 := MaxStocks ( ii ) / 2 ;
+            IF curr < max2
+            THEN
+                c_Shortages ( ii ) := TRUE
+            ELSE
+                c_Shortages ( ii ) := FALSE
+            END
+        END
+    END
+    ;
+
+
+    res <-- GetShortage = //Feladat3
+    BEGIN
+        res := c_Shortages
+    END
+    ;
+
+
+    sum <-- GetSum = //Feladat4
+    BEGIN
+        sum := 0 ;
+        VAR
+            ii
+        IN
+            ii := 0 ;
+            WHILE ii < 5
+            DO
+                ii := ii + 1 ;
+                sum := sum + c_CurrentStocks ( ii )
+            INVARIANT
+                ii : 0 .. 5
+                & sum = SIGMA ( xx ) . ( xx : 1 .. ii | c_CurrentStocks ( xx ) )
+            VARIANT
+                5 - ii
+            END
+        END
+    END
+    ;
+
+
+    res <-- GetRequiredAmount ( ii ) = // Feladat5
+    BEGIN
+       res := c_RequiredAmounts ( ii )
+    END
+
+ END

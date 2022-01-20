@@ -1,0 +1,4 @@
+digraph {
+stock_i [ label=" stock\nstock_i " shape= box ]
+
+}

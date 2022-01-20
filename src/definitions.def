@@ -1,0 +1,10 @@
+DEFINITIONS
+    STOCKS == (1..5) ;
+    NUM_OF_STOCK_TYPE == (0..4000) ;
+    MAX_STOCKS_DEF == {
+        1 |-> 1000 ,
+        2 |-> 2000 ,
+        3 |-> 500 ,
+        4 |-> 125 ,
+        5 |-> 4000
+    }

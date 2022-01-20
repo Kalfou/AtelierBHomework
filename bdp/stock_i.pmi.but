@@ -1,0 +1,1 @@
+﻿Flag(FileOn("stock_i.pmi.res")) & Set(toto | (c_Shortages$1~|>>{ii}\/{FALSE|->ii})[{TRUE}] = c_Shortages$1~[{TRUE}]-{ii})
